@@ -1,7 +1,7 @@
 const express = require("express")
 const app = express()
-const record = require('./routes/record')
-const router = require('./routes/users')
+const record = require('./src/routes/record')
+const router = require('./src/routes/users')
 const auth= require('./src/middleware/auth')
 const port = process.env.PORT || 3000
 
