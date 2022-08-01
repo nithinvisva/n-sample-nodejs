@@ -2,6 +2,7 @@ const express = require("express")
 const app = express()
 const record = require('./routes/record')
 const router = require('./routes/users')
+const auth= require('./src/middleware/auth')
 const port = process.env.PORT || 3000
 
 
@@ -11,6 +12,22 @@ app.get("/", (req, res) => {
 
 app.use('/record',auth.auth, record);
 app.use('/users', router);
+
+// MongoDB connection
+const url = `mongodb+srv://nithinvisva:visuakc6999@crudapp.ubtykah.mongodb.net/?retryWrites=true&w=majority`;
+
+const connectionParams={
+    useNewUrlParser: true,
+    // useCreateIndex: true,
+    useUnifiedTopology: true 
+}
+mongoose.connect(url,connectionParams)
+    .then( () => {
+        console.log('Connected to database ')
+    })
+    .catch( (err) => {
+        console.error(`Error connecting to the database. \n${err}`);
+    })
 
 app.listen(port, () => {
   console.log(`Example app listening at Port: ${port}`)
