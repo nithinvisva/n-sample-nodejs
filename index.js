@@ -19,10 +19,10 @@ const auth= require('./src/middleware/auth')
 var app = express()
 const port = process.env.PORT || 8000;
 //Route
-app.use(cors({
-    origin: "*"
-})
-)
+// app.use(cors({
+//     origin: "*"
+// })
+// )
 app.get('/',(res,req)=>{
   res.send('working')
 })
